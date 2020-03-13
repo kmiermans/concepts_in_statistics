@@ -1,19 +1,27 @@
+# Concepts in Statistics: A short summary
+
 ## For whom is this guide?
 
 - you have a solid understanding of math (probability distributions, Taylor series, Fourier transforms and random numbers), but do not yet understand statistics
 - you may have used hypothesis tests before, but don't know why should use one hypothesis test over a different one
 - you'd like to see an overview of the important concepts in hypothesis testing in a single, relatively short document
 
+## Table of Contents
+
+[TOC]
+
+
+
 ## Jargon
 
-| Term                                                         | Meaning                             | Ref  |
-| ------------------------------------------------------------ | ----------------------------------- | ---- |
-| statistic                                                    | any function of the data            |      |
-| test statistic                                               | statistic used for hypothesis tests |      |
-| <img src="svgs/8da378ea51dd127a81c941b1dfb19725.svg" align=middle width=55.02870614999999pt height=24.65753399999998pt/> |                                     |      |
-| likelihood (function)                                        |                                     |      |
-| central limit theorem                                        |                                     |      |
-| characteristic function                                      |                                     |      |
+| Term                    | Meaning                             | Ref  |
+| ----------------------- | ----------------------------------- | ---- |
+| statistic               | any function of the data            |      |
+| test statistic          | statistic used for hypothesis tests |      |
+| <img src="svgs/8da378ea51dd127a81c941b1dfb19725.svg" align=middle width=55.02870614999999pt height=24.65753399999998pt/>              |                                     |      |
+| likelihood (function)   |                                     |      |
+| central limit theorem   |                                     |      |
+| characteristic function |                                     |      |
 
 ## Statistics and test statistics: What are they and why do we need them?
 
@@ -145,6 +153,31 @@ where <img src="svgs/148cb16a2bdd7e34afdef24f19394b82.svg" align=middle width=13
 
 
 
-## What's the purpose of the distribution of a test statistic?
+## What do we do with the distribution of a test statistic?
+
+**Summary: **The distribution of a test statistic can be used to compare data against a null hypothesis.
 
 Whatever the form of the test statistic, let's use <img src="svgs/5b51bd2e6f329245d425b8002d7cf942.svg" align=middle width=12.397274999999992pt height=22.465723500000017pt/> as a catch-all symbol, we have been frequently referring to this distribution <img src="svgs/629b0e5ce695ad24658d4123ddc09f36.svg" align=middle width=46.19302049999999pt height=24.65753399999998pt/> where <img src="svgs/27e556cf3caa0673ac49a8f0de3c73ca.svg" align=middle width=8.17352744999999pt height=22.831056599999986pt/> is some model parameter. Why is this a useful quantity? It allows for us to first propose a *null hypothesis* in the form of a model, and then to compare the data probability, under that model.
+
+When comparing the data against a null hypothesis, the idea in the scientific method of *falsifying* a hypothesis very naturally arises: we first propose a null hypothesis model <img src="svgs/30074edb23bec8e7c47c584ff885e5b5.svg" align=middle width=20.21695004999999pt height=22.465723500000017pt/>, and can then see whether the observed data is (im)probable under that model <img src="svgs/213bcf5df33c9c327c40804fe7250419.svg" align=middle width=59.058355949999985pt height=24.65753399999998pt/>.
+
+### Flow chart of the process
+
+1. Assume a null hypothesis <img src="svgs/30074edb23bec8e7c47c584ff885e5b5.svg" align=middle width=20.21695004999999pt height=22.465723500000017pt/>:
+   - $H_0$ refers to some kind of expectation about your data
+   - $H_0$ can be fully parametrized, as was the case when we compared data against a Gaussian with known $\mu,\sigma$; or only be partially parametrized, as was the case when we estimated $\sigma$ using $s$; or even be non-parametrized.
+   - $H_0$ makes a statement about the value of a statistic, e.g. that the mean is a certain value.
+2. Propose a test statistic <img src="svgs/5b51bd2e6f329245d425b8002d7cf942.svg" align=middle width=12.397274999999992pt height=22.465723500000017pt/> that captures whether <img src="svgs/30074edb23bec8e7c47c584ff885e5b5.svg" align=middle width=20.21695004999999pt height=22.465723500000017pt/> is true or not.
+3. Compute the distribution of <img src="svgs/5b51bd2e6f329245d425b8002d7cf942.svg" align=middle width=12.397274999999992pt height=22.465723500000017pt/> *under <img src="svgs/30074edb23bec8e7c47c584ff885e5b5.svg" align=middle width=20.21695004999999pt height=22.465723500000017pt/>*, <img src="svgs/41949d22f67aa322c8b718334d05853a.svg" align=middle width=59.058355949999985pt height=24.65753399999998pt/>. Important: in computing <img src="svgs/41949d22f67aa322c8b718334d05853a.svg" align=middle width=59.058355949999985pt height=24.65753399999998pt/>, we assume that the data was generated by the process that is consistent with <img src="svgs/30074edb23bec8e7c47c584ff885e5b5.svg" align=middle width=20.21695004999999pt height=22.465723500000017pt/>.
+4. Give your test statistic <img src="svgs/5b51bd2e6f329245d425b8002d7cf942.svg" align=middle width=12.397274999999992pt height=22.465723500000017pt/> and its associated distribution a cool-sounding name, like *The Pirate-Z* and the *Harr-Distribution* <img src="svgs/6d89b651e655c39221cb9d17c46f082f.svg" align=middle width=58.60742579999999pt height=24.65753399999998pt/>.
+
+### Why are there so many test statistics? Why are there so many distributions in hypothesis testing?
+
+As we can see in the above flow-chart, testing different quantities needs different test statistics. Testing for whether the median is different in your data compared to a null model? You need a new test statistic! Testing for whether the variance in your data is different to the null model? You need a new test statistic! Comparing the mean of two samples against *each other*, both with their own sample variances? You need a new test statistic! Additionally, if your null model is not fully parametrized, then you might have to estimate that unknown parameter in your test statistic.
+
+It's easy to see why the number of test statistics will expand to account for all these combinations. For each new test statistic that we propose, we have to compute its distribution under the null model <img src="svgs/41949d22f67aa322c8b718334d05853a.svg" align=middle width=59.058355949999985pt height=24.65753399999998pt/>. In some cases, <img src="svgs/41949d22f67aa322c8b718334d05853a.svg" align=middle width=59.058355949999985pt height=24.65753399999998pt/> might be a known distribution from a different problem, but often it is not. This is one reason why the number of distributions is so large: we have to account for all the possible test statistics that we want to use.
+
+## How do we 'accept' or 'reject' a hypothesis?
+
+
+
