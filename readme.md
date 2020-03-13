@@ -12,9 +12,28 @@
 - Feel free to make changes!
 - Use, share anyway you like.
 
-## Table of Contents
 
-[TOC]
+Table of Contents
+=================
+
+   * [Concepts in Statistics: A short summary](#concepts-in-statistics-a-short-summary)
+      * [For whom is this guide?](#for-whom-is-this-guide)
+      * [Usage](#usage)
+      * [Table of Contents](#table-of-contents)
+      * [Jargon](#jargon)
+      * [Statistics and test statistics: What are they and why do we need them?](#statistics-and-test-statistics-what-are-they-and-why-do-we-need-them)
+      * [The likelihood](#the-likelihood)
+      * [Distributions of test statistics](#distributions-of-test-statistics)
+         * [Central limit theorem](#central-limit-theorem)
+            * [Conceptual Description](#conceptual-description)
+            * [Derivation](#derivation)
+         * [Now that we have the central limit theorem, are we done?](#now-that-we-have-the-central-limit-theorem-are-we-done)
+            * [Derivation of Student's <a href="svgs/944d1711a090dfbf9e813cbd3a10ded1.svg" target="_blank" rel="noopener noreferrer"><img src="svgs/944d1711a090dfbf9e813cbd3a10ded1.svg" align="middle" width="18.72153029999999pt" height="20.221802699999984pt/" style="max-width:100\x;"></a>distribution](#derivation-of-students-distribution)
+      * [What do we do with the distribution of a test statistic?](#what-do-we-do-with-the-distribution-of-a-test-statistic)
+         * [Flow chart of the process](#flow-chart-of-the-process)
+         * [Why are there so many test statistics? Why are there so many distributions in hypothesis testing?](#why-are-there-so-many-test-statistics-why-are-there-so-many-distributions-in-hypothesis-testing)
+      * [How do we 'accept' or 'reject' a hypothesis?](#how-do-we-accept-or-reject-a-hypothesis)
+         * [Why some test statistics are better than others (Neyman-Pearson lemma)](#why-some-test-statistics-are-better-than-others-neyman-pearson-lemma)
 
 
 
