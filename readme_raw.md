@@ -6,6 +6,12 @@
 - you may have used hypothesis tests before, but don't know why should use one hypothesis test over a different one
 - you'd like to see an overview of the important concepts in hypothesis testing in a single, relatively short document
 
+## Usage
+
+- This is a work in progress, but I'm nearly done.
+- Feel free to make changes!
+- Use, share anyway you like.
+
 ## Table of Contents
 
 [TOC]
@@ -14,14 +20,23 @@
 
 ## Jargon
 
-| Term                    | Meaning                             | Ref  |
-| ----------------------- | ----------------------------------- | ---- |
-| statistic               | any function of the data            |      |
-| test statistic          | statistic used for hypothesis tests |      |
-| $p(z|H_0)$              |                                     |      |
-| likelihood (function)   |                                     |      |
-| central limit theorem   |                                     |      |
-| characteristic function |                                     |      |
+| Term                                | Meaning                                               | Ref  |
+| ----------------------------------- | ----------------------------------------------------- | ---- |
+| statistic                           | any single numbers that's a function of the data      |      |
+| test statistic                      | statistic used for hypothesis tests                   |      |
+| $p(z|H_0)$                          | Test statistic distribution under the null hypothesis |      |
+| likelihood (function)               | Probability of observing the data in a certain model  |      |
+| central limit theorem               |                                                       |      |
+| characteristic function             |                                                       |      |
+| statistical significance            |                                                       |      |
+| statistical power                   |                                                       |      |
+| false positive error (type 1 error) |                                                       |      |
+| false negative error (type 2 error) |                                                       |      |
+| most powerful test (MP)             |                                                       |      |
+| uniformly most powerful test (UMP)  |                                                       |      |
+| Neyman-Pearson lemma                |                                                       |      |
+|                                     |                                                       |      |
+|                                     |                                                       |      |
 
 ## Statistics and test statistics: What are they and why do we need them?
 
@@ -203,5 +218,56 @@ It's easy to see why the number of test statistics will expand to account for al
 
 ## How do we 'accept' or 'reject' a hypothesis?
 
+**Summary: **We discuss false positives, false negatives, and that there exists are trade-off between these two.
 
+When comparing data to a null model $H_0$ (which is true or false), we can reject or not reject that hypothesis. Thus, there are four combinations in total of accepting/rejecting a true/false null hypothesis. Amongst these, there are two erroneous conclusions: rejecting a true null hypothesis ('false positive' or 'type 1 error') and falsely accepting the null hypothesis ('false negative' or 'type 2 error').
 
+Let's denote the false positive and false negative errors by respectively $\alpha$ and $\beta$. The highest value of $\alpha$ that we're willing to accept is also called the *significance*, and the lower the significance the fewer false positives we make (lower is better, everything else being equal). For some reason that I do not know, statisticians more often use the number $1-\beta$ over $\beta$ directly, and they call $1-\beta$ the *statistical size*. When comparing two hypotheses that are mutually exclusive, but when one of them is for sure true, then $1-\beta$ is the *true positive* rate.[^statistical-power-true-positive-relationship] So statistical power is another word for true positive rate in these cases.
+
+[^statistical-power-true-positive-relationship]: That this is so can be seen as follows. The true positive rate is $p(\hat R H_0| \sim H_0)$, where the symbol $\hat R H_0$ refers to 'rejecting the null hypothesis'; and the tilde means that the $H_0$ is false. The false negative rate is $\beta = p(H_0 | \sim H_0)$. Since we either accept or reject the hypothesis, we have $1 = p(H_0|\sim H_0)+p(\hat R H_0 | \sim H_0)$, so we find that the true positive rate $p(\hat R H_0 | \sim H_0) = 1- p(H_0|\sim H_0) = 1- \beta$.
+
+Ideally, we'd like to make both $\alpha$ and $\beta$ as small as possible. It turns out that this is not always possible: there is a *trade-off* between false positives and false negatives. I do not know how general this statement is, or whether there are cases when there isn't a trade-off, but for any hypothesis test by thresholding the test statistic, this trade-off is inevitable. The relationship between $\alpha,\beta$ for a given model and its data can be visualized in the *receiver operator characteristic* (ROC), which is just a fancy term for a graph with the statistical error rates. The graph below [from Wikipedia](https://commons.wikimedia.org/wiki/File:ROC_curves.svg) illustrates this trade-off and the corresponding ROC curve.
+
+![ROC_curves.svg](ROC_curves.svg.png)
+
+Although there is a trade-off between $\alpha$ and $\beta$ *for a given test*, it is perfectly possible for test procedure A to have its error rates always be smaller than of a different test procedure B (i.e. that $\alpha_A < \alpha_B$ and $\beta_A < \beta_B$). In fact, it turns out that, for a given maximum value of $\alpha$, there is a test procedure that unambiguously produces the lowest value of $\beta$. A test that satisfies this condition is called *most powerful*, and for a certain type of hypothesis the likelihood ratio is the test statistic that provides this most powerful test. Thus, **some test statistics are really better than others** That statement is subject of the Neyman-Pearson lemma, which we have reproduced below.
+
+### Why some test statistics are better than others (Neyman-Pearson lemma)
+
+We will show that the test statistic
+$$
+L = \dfrac{\mathcal L (\theta _0 | x)} {\mathcal L (\theta_1 | x)},
+$$
+where $x$ is data and $\theta_{0,1}$ are two possible values of a model parameter ($\theta_0$ is the null model value), is the most powerful test statistic for a certain type of hypothesis. The type of hypothesis is one that uses a rejection region, rejecting the hypothesis if $L$ lies in a certain region. Concretely, the rejection region is $R_{NP} = \{x : L \leq \eta \}$ where $\eta$ is a number chosen such that $p(R_{NP} | \theta_0) = \alpha$.
+
+Our task will be to show that $p(R_{NP}|\theta_1) \geq p(R|\theta_1)$, i.e. that the test statistics $L$ with associated rejection region $R_{NP}$ is always more powerful than the other test with region $R$.
+
+For this different test statistic with its own rejection region, we have $p(R | \theta) = \int_R dx p(x | \theta)  = \int_R dx \mathcal L (\theta | x)$. For this test to have significance level $\alpha$, we have $p(R|\theta_0) \leq \alpha$. We will now do some manipulations of the intervals in $p(R|\theta), p(R_{NP} | \theta )$ to make a comparison between the two.
+
+First, we note that, in general
+$$
+p(R | \theta) = p(R \cap S | \theta) + p(R \cap S^C | \theta),\quad(*)
+$$
+
+for any regions $R,S$ and $S^C$ is the complement of $S$. We plug this into the definition of the significance level ($p(R_{NP}|\theta_0) =\alpha \geq p(R | \theta_0)$):
+$$
+p(R_{NP} \cap R^C|\theta_0) = \alpha \geq p(R_{NP}^C \cap R|\theta_0).\quad(**)
+$$
+We now have
+$$
+\begin{align}
+p(S=R_{NP} \cap R^C|\theta_1) & = \int_S dx \, \mathcal L (\theta_1 | x) \\
+& \geq \int_S dx  \mathcal L (\theta_0 | x) / \eta,
+\end{align}
+$$
+where I plugged in $L \leq \eta $ inside the region $R_{NP}$ so also inside the region $S \in R_{NP}$. Thus
+$$
+\begin{align}
+p(S=R_{NP} \cap R^C|\theta_1) & \geq p(S | \theta_0) \\
+& \geq \eta^{-1} p(S^C | \theta_0)\quad(\text{from }**) \\
+& = \eta^{-1} \int_{S^C} dx \,  \mathcal L (\theta_0 | x) \\
+& > \int_{S^C} dx \, \mathcal L (\theta_1 | x) \quad \because L > \eta\forall x \in S^C \\
+& = p(S^C | \theta_1).
+\end{align}
+$$
+So $p(R_{NP} \cap R^C | \theta_1) > p(R_{NP}^C\cap R | \theta_1)$, which by $(*)$ implies that $p(R_{NP}|\theta_1) \geq p(R |\theta_1)$. We have thus found that the likelihood ratio $L$ has, for any choice of the significance level $\alpha$, the lowest possible false negative rate $\beta$ amongst any possible test statistic we could have chosen.

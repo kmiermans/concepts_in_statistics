@@ -6,6 +6,12 @@
 - you may have used hypothesis tests before, but don't know why should use one hypothesis test over a different one
 - you'd like to see an overview of the important concepts in hypothesis testing in a single, relatively short document
 
+## Usage
+
+- This is a work in progress, but I'm nearly done.
+- Feel free to make changes!
+- Use, share anyway you like.
+
 ## Table of Contents
 
 [TOC]
@@ -14,14 +20,23 @@
 
 ## Jargon
 
-| Term                    | Meaning                             | Ref  |
-| ----------------------- | ----------------------------------- | ---- |
-| statistic               | any function of the data            |      |
-| test statistic          | statistic used for hypothesis tests |      |
-| <img src="svgs/8da378ea51dd127a81c941b1dfb19725.svg" align=middle width=55.02870614999999pt height=24.65753399999998pt/>              |                                     |      |
-| likelihood (function)   |                                     |      |
-| central limit theorem   |                                     |      |
-| characteristic function |                                     |      |
+| Term                                | Meaning                                               | Ref  |
+| ----------------------------------- | ----------------------------------------------------- | ---- |
+| statistic                           | any single numbers that's a function of the data      |      |
+| test statistic                      | statistic used for hypothesis tests                   |      |
+| <img src="svgs/8da378ea51dd127a81c941b1dfb19725.svg" align=middle width=55.02870614999999pt height=24.65753399999998pt/>                          | Test statistic distribution under the null hypothesis |      |
+| likelihood (function)               | Probability of observing the data in a certain model  |      |
+| central limit theorem               |                                                       |      |
+| characteristic function             |                                                       |      |
+| statistical significance            |                                                       |      |
+| statistical power                   |                                                       |      |
+| false positive error (type 1 error) |                                                       |      |
+| false negative error (type 2 error) |                                                       |      |
+| most powerful test (MP)             |                                                       |      |
+| uniformly most powerful test (UMP)  |                                                       |      |
+| Neyman-Pearson lemma                |                                                       |      |
+|                                     |                                                       |      |
+|                                     |                                                       |      |
 
 ## Statistics and test statistics: What are they and why do we need them?
 
@@ -179,5 +194,37 @@ It's easy to see why the number of test statistics will expand to account for al
 
 ## How do we 'accept' or 'reject' a hypothesis?
 
+**Summary: **We discuss false positives, false negatives, and that there exists are trade-off between these two.
 
+When comparing data to a null model <img src="svgs/30074edb23bec8e7c47c584ff885e5b5.svg" align=middle width=20.21695004999999pt height=22.465723500000017pt/> (which is true or false), we can reject or not reject that hypothesis. Thus, there are four combinations in total of accepting/rejecting a true/false null hypothesis. Amongst these, there are two erroneous conclusions: rejecting a true null hypothesis ('false positive' or 'type 1 error') and falsely accepting the null hypothesis ('false negative' or 'type 2 error').
 
+Let's denote the false positive and false negative errors by respectively <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg" align=middle width=10.57650494999999pt height=14.15524440000002pt/> and <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg" align=middle width=10.16555099999999pt height=22.831056599999986pt/>. The highest value of <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg" align=middle width=10.57650494999999pt height=14.15524440000002pt/> that we're willing to accept is also called the *significance*, and the lower the significance the fewer false positives we make (lower is better, everything else being equal). For some reason that I do not know, statisticians more often use the number <img src="svgs/13741a4267de21d2928d76992e54f9e9.svg" align=middle width=38.475952349999986pt height=22.831056599999986pt/> over <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg" align=middle width=10.16555099999999pt height=22.831056599999986pt/> directly, and they call <img src="svgs/13741a4267de21d2928d76992e54f9e9.svg" align=middle width=38.475952349999986pt height=22.831056599999986pt/> the *statistical size*. When comparing two hypotheses that are mutually exclusive, but when one of them is for sure true, then <img src="svgs/13741a4267de21d2928d76992e54f9e9.svg" align=middle width=38.475952349999986pt height=22.831056599999986pt/> is the *true positive* rate.[^statistical-power-true-positive-relationship] So statistical power is another word for true positive rate in these cases.
+
+[^statistical-power-true-positive-relationship]: That this is so can be seen as follows. The true positive rate is <img src="svgs/c69b81f9f042dfce610b406a275f1eee.svg" align=middle width=102.226047pt height=31.141535699999984pt/>, where the symbol <img src="svgs/c122693c30c037fc08dc8c1a87be72a3.svg" align=middle width=32.825416799999985pt height=31.141535699999984pt/> refers to 'rejecting the null hypothesis'; and the tilde means that the <img src="svgs/30074edb23bec8e7c47c584ff885e5b5.svg" align=middle width=20.21695004999999pt height=22.465723500000017pt/> is false. The false negative rate is <img src="svgs/58a36bd44509b57b3c79060dbe27f88a.svg" align=middle width=121.7007429pt height=24.65753399999998pt/>. Since we either accept or reject the hypothesis, we have <img src="svgs/aceb457e5a8231eb4ab426fa7ffa4cfe.svg" align=middle width=242.07165674999993pt height=31.141535699999984pt/>, so we find that the true positive rate <img src="svgs/490be82c9eb1ec4558957219050862d7.svg" align=middle width=302.46523890000003pt height=31.141535699999984pt/>.
+
+Ideally, we'd like to make both <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg" align=middle width=10.57650494999999pt height=14.15524440000002pt/> and <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg" align=middle width=10.16555099999999pt height=22.831056599999986pt/> as small as possible. It turns out that this is not always possible: there is a *trade-off* between false positives and false negatives. I do not know how general this statement is, or whether there are cases when there isn't a trade-off, but for any hypothesis test by thresholding the test statistic, this trade-off is inevitable. The relationship between <img src="svgs/a4e80986c12176a9830ef85b8225d816.svg" align=middle width=28.047932549999988pt height=22.831056599999986pt/> for a given model and its data can be visualized in the *receiver operator characteristic* (ROC), which is just a fancy term for a graph with the statistical error rates. The graph below [from Wikipedia](https://commons.wikimedia.org/wiki/File:ROC_curves.svg) illustrates this trade-off and the corresponding ROC curve.
+
+![ROC_curves.svg](ROC_curves.svg.png)
+
+Although there is a trade-off between <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg" align=middle width=10.57650494999999pt height=14.15524440000002pt/> and <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg" align=middle width=10.16555099999999pt height=22.831056599999986pt/> *for a given test*, it is perfectly possible for test procedure A to have its error rates always be smaller than of a different test procedure B (i.e. that <img src="svgs/8873aa70a117c2adee51ba016cdac476.svg" align=middle width=64.14937154999998pt height=17.723762100000005pt/> and <img src="svgs/dbebb6526daa3c7b9c6b2bbb9250cc6d.svg" align=middle width=61.714006199999986pt height=22.831056599999986pt/>). In fact, it turns out that, for a given maximum value of <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg" align=middle width=10.57650494999999pt height=14.15524440000002pt/>, there is a test procedure that unambiguously produces the lowest value of <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg" align=middle width=10.16555099999999pt height=22.831056599999986pt/>. A test that satisfies this condition is called *most powerful*, and for a certain type of hypothesis the likelihood ratio is the test statistic that provides this most powerful test. Thus, **some test statistics are really better than others** That statement is subject of the Neyman-Pearson lemma, which we have reproduced below.
+
+### Why some test statistics are better than others (Neyman-Pearson lemma)
+
+We will show that the test statistic
+<p align="center"><img src="svgs/83690da5b853066b6a50b98abf85757b.svg" align=middle width=94.792203pt height=38.83491479999999pt/></p>
+where <img src="svgs/332cc365a4987aacce0ead01b8bdcc0b.svg" align=middle width=9.39498779999999pt height=14.15524440000002pt/> is data and <img src="svgs/250af282ceb3941baaf0ac3bcf8aa912.svg" align=middle width=24.72611954999999pt height=22.831056599999986pt/> are two possible values of a model parameter (<img src="svgs/1a3151e36f9f52b61f5bf76c08bdae2b.svg" align=middle width=14.269439249999989pt height=22.831056599999986pt/> is the null model value), is the most powerful test statistic for a certain type of hypothesis. The type of hypothesis is one that uses a rejection region, rejecting the hypothesis if <img src="svgs/ddcb483302ed36a59286424aa5e0be17.svg" align=middle width=11.18724254999999pt height=22.465723500000017pt/> lies in a certain region. Concretely, the rejection region is <img src="svgs/f4b80273e968b63356c5f0bfcbc01dd2.svg" align=middle width=138.3944958pt height=24.65753399999998pt/> where <img src="svgs/1d0496971a2775f4887d1df25cea4f7e.svg" align=middle width=8.751954749999989pt height=14.15524440000002pt/> is a number chosen such that <img src="svgs/6fa62954bf0a9f8158528c60ac73bf89.svg" align=middle width=108.29593994999998pt height=24.65753399999998pt/>.
+
+Our task will be to show that <img src="svgs/078cd4bf57ce249803bcd3a065d6d6fa.svg" align=middle width=151.04148179999999pt height=24.65753399999998pt/>, i.e. that the test statistics <img src="svgs/ddcb483302ed36a59286424aa5e0be17.svg" align=middle width=11.18724254999999pt height=22.465723500000017pt/> with associated rejection region <img src="svgs/5a6b3efec910388607b64490a5d84680.svg" align=middle width=34.266361799999984pt height=22.465723500000017pt/> is always more powerful than the other test with region <img src="svgs/1e438235ef9ec72fc51ac5025516017c.svg" align=middle width=12.60847334999999pt height=22.465723500000017pt/>.
+
+For this different test statistic with its own rejection region, we have <img src="svgs/34c3b832e5f48b9fc1fd2f56d387f9d4.svg" align=middle width=258.16211189999996pt height=26.48417309999999pt/>. For this test to have significance level <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg" align=middle width=10.57650494999999pt height=14.15524440000002pt/>, we have <img src="svgs/6adef3d8a6a4a08a422a4b48bf7a9fdc.svg" align=middle width=85.81618154999998pt height=24.65753399999998pt/>. We will now do some manipulations of the intervals in <img src="svgs/136de44a8507aa8c54fffde734160e89.svg" align=middle width=122.59408424999998pt height=24.65753399999998pt/> to make a comparison between the two.
+
+First, we note that, in general
+<p align="center"><img src="svgs/32fed603165f3a3cc2337bed6bc9d80c.svg" align=middle width=295.61096564999997pt height=18.7598829pt/></p>
+
+for any regions <img src="svgs/a973e43d3073713c981ad9db64a20a32.svg" align=middle width=30.941755349999987pt height=22.465723500000017pt/> and <img src="svgs/e579f2c669b7b8ac7c607076044f0589.svg" align=middle width=21.26187689999999pt height=27.6567522pt/> is the complement of <img src="svgs/e257acd1ccbe7fcb654708f1a866bfe9.svg" align=middle width=11.027402099999989pt height=22.465723500000017pt/>. We plug this into the definition of the significance level (<img src="svgs/cd769ffad12c1db9eab2fba15ffe49df.svg" align=middle width=183.53560994999998pt height=24.65753399999998pt/>):
+<p align="center"><img src="svgs/f96b3e39265c90d28a9f6ccfe00eed45.svg" align=middle width=329.04657225pt height=18.7598829pt/></p>
+We now have
+<p align="center"><img src="svgs/6a6575a2966a146acd3df9b8df22e086.svg" align=middle width=286.65320145pt height=81.279264pt/></p>
+where I plugged in <img src="svgs/6ce2b48c272b9a3000cfb85fa49f135b.svg" align=middle width=41.85682874999999pt height=22.465723500000017pt/> inside the region <img src="svgs/5a6b3efec910388607b64490a5d84680.svg" align=middle width=34.266361799999984pt height=22.465723500000017pt/> so also inside the region <img src="svgs/3abafb5e85bd363a7939e5cff5d1d08a.svg" align=middle width=65.3848833pt height=22.465723500000017pt/>. Thus
+<p align="center"><img src="svgs/b6dd6dbef42d64be74da49e2ea842047.svg" align=middle width=415.68973049999994pt height=160.90149735pt/></p>
+So <img src="svgs/16a8df7972a372205bd63fbd093583a8.svg" align=middle width=246.3239856pt height=27.6567522pt/>, which by <img src="svgs/70c4c9b9d0b3ff0ac46f10357ad7ce3c.svg" align=middle width=21.00464354999999pt height=24.65753399999998pt/> implies that <img src="svgs/9d71aaf43b1c3c6574e8f88182c9de79.svg" align=middle width=151.04148179999999pt height=24.65753399999998pt/>. We have thus found that the likelihood ratio <img src="svgs/ddcb483302ed36a59286424aa5e0be17.svg" align=middle width=11.18724254999999pt height=22.465723500000017pt/> has, for any choice of the significance level <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg" align=middle width=10.57650494999999pt height=14.15524440000002pt/>, the lowest possible false negative rate <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg" align=middle width=10.16555099999999pt height=22.831056599999986pt/> amongst any possible test statistic we could have chosen.
