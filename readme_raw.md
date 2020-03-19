@@ -12,8 +12,7 @@
 - Feel free to make changes!
 - Use, share anyway you like.
 
-```
-<!--ts-->
+## Table of contents
    * [Concepts in Statistics: A short summary](#concepts-in-statistics-a-short-summary)
       * [For whom is this guide?](#for-whom-is-this-guide)
       * [Usage](#usage)
@@ -33,11 +32,6 @@
          * [How to get the true positive rate from the false negative rate<a name="user-content-false-negative-to-true-positive"></a>](#how-to-get-the-true-positive-rate-from-the-false-negative-rate)
          * [There exists a trade-off between the false negative and false positive rate](#there-exists-a-trade-off-between-the-false-negative-and-false-positive-rate)
          * [Why some test statistics are better than others (Neyman-Pearson lemma)](#why-some-test-statistics-are-better-than-others-neyman-pearson-lemma)
-
-<!-- Added by: karsten, at: Thu Mar 19 17:17:36 CET 2020 -->
-
-<!--te-->
-```
 
 
 
