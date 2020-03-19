@@ -123,6 +123,8 @@ where <img src="svgs/55a049b8f161ae7cfeb0197d75aff967.svg" align=middle width=9.
 
 Using the central limit theorem, we can show that the quantity <img src="svgs/f93ce33e511096ed626b4719d50f17d2.svg" align=middle width=8.367621899999993pt height=14.15524440000002pt/> has a distribution that no longer depends on <img src="svgs/06b5aaaed2a773cd04319ba167748d81.svg" align=middle width=27.07768304999999pt height=14.15524440000002pt/> or <img src="svgs/8cda31ed38c6d59d14ebefa440099572.svg" align=middle width=9.98290094999999pt height=14.15524440000002pt/>. Thus, by first rescaling the data in a clever way, we have found a single distribution that captures how different the sampled mean <img src="svgs/c97fba47d1059b5c2d3fa5f52768a2a7.svg" align=middle width=9.39498779999999pt height=18.666631500000015pt/> is from the model (as described by <img src="svgs/ad5bfc709b2e6c94b4dab37e68111117.svg" align=middle width=27.19370774999999pt height=14.15524440000002pt/>)! This distribution is <img src="svgs/915e8c48633f3adc2db7753975c9cac3.svg" align=middle width=126.97750889999998pt height=43.42856099999997pt/> (the approximation improves with larger <img src="svgs/55a049b8f161ae7cfeb0197d75aff967.svg" align=middle width=9.86687624999999pt height=14.15524440000002pt/>). If <img src="svgs/8fffcccc47f9f88dac738cc6bbf65e09.svg" align=middle width=29.42361839999999pt height=24.65753399999998pt/> is very small, then our data is very unlikely under the model. That might mean that our data is not described by the model. We'll discuss later how to make that more quantitative.
 
+<details><summary>Derivation of Central Limit Theorem</summary>
+
 #### Derivation
 
 To compute the distribution of <img src="svgs/f93ce33e511096ed626b4719d50f17d2.svg" align=middle width=8.367621899999993pt height=14.15524440000002pt/>, <img src="svgs/8fffcccc47f9f88dac738cc6bbf65e09.svg" align=middle width=29.42361839999999pt height=24.65753399999998pt/>, we first split it up into smaller terms: <img src="svgs/9456d07855d6d3510ac4031a49c8af6f.svg" align=middle width=110.87528429999999pt height=24.995338500000003pt/>, where <img src="svgs/87284acfc7d9cab9246d7c3cb9ee8d8e.svg" align=middle width=117.00903554999998pt height=24.65753399999998pt/>. We do this because <img src="svgs/c503cd3cc90b9dc8646daa73c42365ae.svg" align=middle width=14.19429989999999pt height=22.465723500000017pt/> has the nice properties that <img src="svgs/96f3c94049603177c673e7ae1ec30371.svg" align=middle width=138.31036559999998pt height=24.65753399999998pt/>. We now compute the *characteristic function* of <img src="svgs/8fffcccc47f9f88dac738cc6bbf65e09.svg" align=middle width=29.42361839999999pt height=24.65753399999998pt/>, which is just the Fourier transform of <img src="svgs/8fffcccc47f9f88dac738cc6bbf65e09.svg" align=middle width=29.42361839999999pt height=24.65753399999998pt/>:
@@ -145,6 +147,8 @@ Now that we have the characteristic function of <img src="svgs/f93ce33e511096ed6
 <p align="center"><img src="svgs/2215729028c663e7f11ca21a3b6bd93d.svg" align=middle width=136.84051095pt height=37.0017615pt/></p>
 So we computed the distribution of the test statistic <img src="svgs/f93ce33e511096ed626b4719d50f17d2.svg" align=middle width=8.367621899999993pt height=14.15524440000002pt/>, and found that it does not depend on either the number of samples <img src="svgs/55a049b8f161ae7cfeb0197d75aff967.svg" align=middle width=9.86687624999999pt height=14.15524440000002pt/> or the variance of the data <img src="svgs/7f58d2dffa0159e5fc0d00ee69279da1.svg" align=middle width=46.461275849999986pt height=24.65753399999998pt/> anymore!
 
+</details>
+
 ### Now that we have the central limit theorem, are we done?
 
 **Summary: **We first propose a test statistic <img src="svgs/4f4f4e395762a3af4575de74c019ebb5.svg" align=middle width=5.936097749999991pt height=20.221802699999984pt/> if the model does not have a known <img src="svgs/7aed918aa12a276a602e30e90b0b109d.svg" align=middle width=9.98290094999999pt height=14.15524440000002pt/>. We then show that the distribution of this test statistic <img src="svgs/4f4f4e395762a3af4575de74c019ebb5.svg" align=middle width=5.936097749999991pt height=20.221802699999984pt/> is the Student's <img src="svgs/944d1711a090dfbf9e813cbd3a10ded1.svg" align=middle width=18.72153029999999pt height=20.221802699999984pt/>distribution.
@@ -163,7 +167,9 @@ Here's the distribution that I found numerically for different values of <img sr
 
 For many samples <img src="svgs/bd0e84fa44072440418590ed368aa5cd.svg" align=middle width=43.65668669999999pt height=21.18721440000001pt/>, the distribution of <img src="svgs/4f4f4e395762a3af4575de74c019ebb5.svg" align=middle width=5.936097749999991pt height=20.221802699999984pt/> looks like a Gaussian. This makes sense, because if we sample very often then of course the sampled standard deviation should look very much like the 'real' standard deviation, <img src="svgs/c98e16ece767d2a0d4061ef00a1cbfef.svg" align=middle width=39.606010949999984pt height=15.883457699999983pt/>, so <img src="svgs/4f4f4e395762a3af4575de74c019ebb5.svg" align=middle width=5.936097749999991pt height=20.221802699999984pt/> will be the same as <img src="svgs/f93ce33e511096ed626b4719d50f17d2.svg" align=middle width=8.367621899999993pt height=14.15524440000002pt/> as we found using the central limit theorem. For only a few samples <img src="svgs/2b1dd818c8d59054a639e174faecd8a9.svg" align=middle width=40.00371704999999pt height=21.18721440000001pt/>, then <img src="svgs/6f9bad7347b91ceebebd3ad7e6f6f2d1.svg" align=middle width=7.7054801999999905pt height=14.15524440000002pt/> can be very different to <img src="svgs/8cda31ed38c6d59d14ebefa440099572.svg" align=middle width=9.98290094999999pt height=14.15524440000002pt/>. Moreover, since <img src="svgs/6eb0fbd98e16e35403529c915ec49b0c.svg" align=middle width=51.99762644999999pt height=24.65753399999998pt/>, if <img src="svgs/6f9bad7347b91ceebebd3ad7e6f6f2d1.svg" align=middle width=7.7054801999999905pt height=14.15524440000002pt/> happens to be very small just by random chance, then <img src="svgs/4f4f4e395762a3af4575de74c019ebb5.svg" align=middle width=5.936097749999991pt height=20.221802699999984pt/> can become very big. This is why the distribution of <img src="svgs/4f4f4e395762a3af4575de74c019ebb5.svg" align=middle width=5.936097749999991pt height=20.221802699999984pt/> has *fat tails* for small values of <img src="svgs/55a049b8f161ae7cfeb0197d75aff967.svg" align=middle width=9.86687624999999pt height=14.15524440000002pt/>. The family of functions <img src="svgs/9b68b67b54de4ece1432314cff7b9574.svg" align=middle width=41.46324599999999pt height=24.65753399999998pt/> is called the *Student's <img src="svgs/944d1711a090dfbf9e813cbd3a10ded1.svg" align=middle width=18.72153029999999pt height=20.221802699999984pt/>distribution*. It is not trivial to derive the formulae for <img src="svgs/2dd05df5f614aac171df87d71ac56bf0.svg" align=middle width=41.46324599999999pt height=24.65753399999998pt/>, but you can see the sketch of a derivation below.
 
-#### Derivation of Student's <img src="svgs/944d1711a090dfbf9e813cbd3a10ded1.svg" align=middle width=18.72153029999999pt height=20.221802699999984pt/>distribution
+<details><summary>Sketch of derivation of Student's t-distribution</summary>
+
+#### Sketch of Derivation of Student's <img src="svgs/944d1711a090dfbf9e813cbd3a10ded1.svg" align=middle width=18.72153029999999pt height=20.221802699999984pt/>distribution
 
 The student's t-distribution is (for simplicity I first subtracted <img src="svgs/07617f9d8fe48b4a7b3f523d6730eef0.svg" align=middle width=9.90492359999999pt height=14.15524440000002pt/> from the datapoints)
 <p align="center"><img src="svgs/1ff0fafd24078fcedeca66f0d4ed014d.svg" align=middle width=118.90901714999998pt height=38.958780299999994pt/></p>
@@ -188,6 +194,8 @@ where <img src="svgs/148cb16a2bdd7e34afdef24f19394b82.svg" align=middle width=13
 
    1. $p(t) = \int ds ~ d\bar x \delta( t- \sqrt n \bar x / s) p(\bar x) p(s)$
    2. Using a variable substitution, we can express the above integral in terms of Gamma functions.
+   
+   </details>
 
 
 
@@ -235,6 +243,8 @@ Although there is a trade-off between <img src="svgs/c745b9b57c145ec5577b82542b2
 
 ### Why some test statistics are better than others (Neyman-Pearson lemma)
 
+**Summary: **For a given statistical significance $\alpha$, different test statistics provide different rates of false negatives. A test that has the lowest rate of false negatives is called *most powerful*. It turns out that for some hypotheses, we can prove that the likelihood ratio provides the most powerful test for every $\alpha$.
+
 <details><summary>Proof of the Neyman Pearson Lemma</summary>
 
 We will show that the test statistic
@@ -256,4 +266,4 @@ where I plugged in <img src="svgs/6ce2b48c272b9a3000cfb85fa49f135b.svg" align=mi
 <p align="center"><img src="svgs/b6dd6dbef42d64be74da49e2ea842047.svg" align=middle width=415.68973049999994pt height=160.90149735pt/></p>
 So <img src="svgs/16a8df7972a372205bd63fbd093583a8.svg" align=middle width=246.3239856pt height=27.6567522pt/>, which by <img src="svgs/70c4c9b9d0b3ff0ac46f10357ad7ce3c.svg" align=middle width=21.00464354999999pt height=24.65753399999998pt/> implies that <img src="svgs/9d71aaf43b1c3c6574e8f88182c9de79.svg" align=middle width=151.04148179999999pt height=24.65753399999998pt/>. We have thus found that the likelihood ratio <img src="svgs/ddcb483302ed36a59286424aa5e0be17.svg" align=middle width=11.18724254999999pt height=22.465723500000017pt/> has, for any choice of the significance level <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg" align=middle width=10.57650494999999pt height=14.15524440000002pt/>, the lowest possible false negative rate <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg" align=middle width=10.16555099999999pt height=22.831056599999986pt/> amongst any possible test statistic we could have chosen.
 
-<\details>
+</details>
