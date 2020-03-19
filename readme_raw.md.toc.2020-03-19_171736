@@ -1,0 +1,22 @@
+   * [Concepts in Statistics: A short summary](#concepts-in-statistics-a-short-summary)
+      * [For whom is this guide?](#for-whom-is-this-guide)
+      * [Usage](#usage)
+      * [Jargon](#jargon)
+      * [Statistics and test statistics: What are they and why do we need them?](#statistics-and-test-statistics-what-are-they-and-why-do-we-need-them)
+      * [The likelihood](#the-likelihood)
+      * [Distributions of test statistics](#distributions-of-test-statistics)
+         * [Central limit theorem](#central-limit-theorem)
+            * [Conceptual Description](#conceptual-description)
+            * [Derivation](#derivation)
+         * [Now that we have the central limit theorem, are we done?](#now-that-we-have-the-central-limit-theorem-are-we-done)
+            * [Derivation of Student's $t-$distribution](#derivation-of-students-t-distribution)
+      * [What do we do with the distribution of a test statistic?](#what-do-we-do-with-the-distribution-of-a-test-statistic)
+         * [Flow chart of the process](#flow-chart-of-the-process)
+         * [Why are there so many test statistics? Why are there so many distributions in hypothesis testing?](#why-are-there-so-many-test-statistics-why-are-there-so-many-distributions-in-hypothesis-testing)
+      * [How do we 'accept' or 'reject' a hypothesis?](#how-do-we-accept-or-reject-a-hypothesis)
+         * [How to get the true positive rate from the false negative rate<a name="user-content-false-negative-to-true-positive"></a>](#how-to-get-the-true-positive-rate-from-the-false-negative-rate)
+         * [There exists a trade-off between the false negative and false positive rate](#there-exists-a-trade-off-between-the-false-negative-and-false-positive-rate)
+         * [Why some test statistics are better than others (Neyman-Pearson lemma)](#why-some-test-statistics-are-better-than-others-neyman-pearson-lemma)
+
+<!-- Added by: karsten, at: Thu Mar 19 17:17:36 CET 2020 -->
+
