@@ -231,9 +231,11 @@ Ideally, we'd like to make both <img src="svgs/c745b9b57c145ec5577b82542b2df546.
 
 Although there is a trade-off between <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg" align=middle width=10.57650494999999pt height=14.15524440000002pt/> and <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg" align=middle width=10.16555099999999pt height=22.831056599999986pt/> *for a given test*, it is perfectly possible for test procedure A to have its error rates always be smaller than of a different test procedure B (i.e. that <img src="svgs/8873aa70a117c2adee51ba016cdac476.svg" align=middle width=64.14937154999998pt height=17.723762100000005pt/> and <img src="svgs/dbebb6526daa3c7b9c6b2bbb9250cc6d.svg" align=middle width=61.714006199999986pt height=22.831056599999986pt/>). In fact, it turns out that, for a given maximum value of <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg" align=middle width=10.57650494999999pt height=14.15524440000002pt/>, there is a test procedure that unambiguously produces the lowest value of <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg" align=middle width=10.16555099999999pt height=22.831056599999986pt/>. A test that satisfies this condition is called *most powerful*, and for a certain type of hypothesis the likelihood ratio is the test statistic that provides this most powerful test. Thus, **some test statistics are really better than others** That statement is subject of the Neyman-Pearson lemma, which we have reproduced below.
 
-​	<!-- sdfs ssdfs  -->
+
 
 ### Why some test statistics are better than others (Neyman-Pearson lemma)
+
+<details><summary>Proof of the Neyman Pearson Lemma</summary>
 
 We will show that the test statistic
 <p align="center"><img src="svgs/83690da5b853066b6a50b98abf85757b.svg" align=middle width=94.792203pt height=38.83491479999999pt/></p>
@@ -253,3 +255,5 @@ We now have
 where I plugged in <img src="svgs/6ce2b48c272b9a3000cfb85fa49f135b.svg" align=middle width=41.85682874999999pt height=22.465723500000017pt/> inside the region <img src="svgs/5a6b3efec910388607b64490a5d84680.svg" align=middle width=34.266361799999984pt height=22.465723500000017pt/> so also inside the region <img src="svgs/3abafb5e85bd363a7939e5cff5d1d08a.svg" align=middle width=65.3848833pt height=22.465723500000017pt/>. Thus
 <p align="center"><img src="svgs/b6dd6dbef42d64be74da49e2ea842047.svg" align=middle width=415.68973049999994pt height=160.90149735pt/></p>
 So <img src="svgs/16a8df7972a372205bd63fbd093583a8.svg" align=middle width=246.3239856pt height=27.6567522pt/>, which by <img src="svgs/70c4c9b9d0b3ff0ac46f10357ad7ce3c.svg" align=middle width=21.00464354999999pt height=24.65753399999998pt/> implies that <img src="svgs/9d71aaf43b1c3c6574e8f88182c9de79.svg" align=middle width=151.04148179999999pt height=24.65753399999998pt/>. We have thus found that the likelihood ratio <img src="svgs/ddcb483302ed36a59286424aa5e0be17.svg" align=middle width=11.18724254999999pt height=22.465723500000017pt/> has, for any choice of the significance level <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg" align=middle width=10.57650494999999pt height=14.15524440000002pt/>, the lowest possible false negative rate <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg" align=middle width=10.16555099999999pt height=22.831056599999986pt/> amongst any possible test statistic we could have chosen.
+
+<\details>
