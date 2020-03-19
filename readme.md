@@ -8,9 +8,13 @@
 
 ## Usage
 
-- This is a work in progress, but I'm nearly done.
+- This is a work in progress.
 - Feel free to make changes!
 - Use, share anyway you like.
+
+## What's still missing
+
+- connection between frequentist and Bayesian statistics
 
 
 Table of Contents
@@ -226,6 +230,8 @@ Ideally, we'd like to make both <img src="svgs/c745b9b57c145ec5577b82542b2df546.
 ![ROC_curves.svg](ROC_curves.svg.png)
 
 Although there is a trade-off between <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg" align=middle width=10.57650494999999pt height=14.15524440000002pt/> and <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg" align=middle width=10.16555099999999pt height=22.831056599999986pt/> *for a given test*, it is perfectly possible for test procedure A to have its error rates always be smaller than of a different test procedure B (i.e. that <img src="svgs/8873aa70a117c2adee51ba016cdac476.svg" align=middle width=64.14937154999998pt height=17.723762100000005pt/> and <img src="svgs/dbebb6526daa3c7b9c6b2bbb9250cc6d.svg" align=middle width=61.714006199999986pt height=22.831056599999986pt/>). In fact, it turns out that, for a given maximum value of <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg" align=middle width=10.57650494999999pt height=14.15524440000002pt/>, there is a test procedure that unambiguously produces the lowest value of <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg" align=middle width=10.16555099999999pt height=22.831056599999986pt/>. A test that satisfies this condition is called *most powerful*, and for a certain type of hypothesis the likelihood ratio is the test statistic that provides this most powerful test. Thus, **some test statistics are really better than others** That statement is subject of the Neyman-Pearson lemma, which we have reproduced below.
+
+​	<!-- sdfs ssdfs  -->
 
 ### Why some test statistics are better than others (Neyman-Pearson lemma)
 
