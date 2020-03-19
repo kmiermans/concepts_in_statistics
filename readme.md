@@ -119,7 +119,7 @@ Now that we have the characteristic function of <img src="svgs/f93ce33e511096ed6
 <p align="center"><img src="svgs/2215729028c663e7f11ca21a3b6bd93d.svg" align=middle width=136.84051095pt height=37.0017615pt/></p>
 So we computed the distribution of the test statistic <img src="svgs/f93ce33e511096ed626b4719d50f17d2.svg" align=middle width=8.367621899999993pt height=14.15524440000002pt/>, and found that it does not depend on either the number of samples <img src="svgs/55a049b8f161ae7cfeb0197d75aff967.svg" align=middle width=9.86687624999999pt height=14.15524440000002pt/> or the variance of the data <img src="svgs/7f58d2dffa0159e5fc0d00ee69279da1.svg" align=middle width=46.461275849999986pt height=24.65753399999998pt/> anymore!
 
-</derivation>
+</details>
 
 ## Now that we have the central limit theorem, are we done?
 

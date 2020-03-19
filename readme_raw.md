@@ -141,7 +141,7 @@ p(z) \rightarrow \dfrac 1 {\sqrt{2\pi}} e^{-\frac 1 2 z^2}.
 $$
 So we computed the distribution of the test statistic $z$, and found that it does not depend on either the number of samples $n$ or the variance of the data $\mathrm{var}[X]$ anymore!
 
-</derivation>
+</details>
 
 ## Now that we have the central limit theorem, are we done?
 
