@@ -12,31 +12,11 @@
 - Feel free to make changes!
 - Use, share anyway you like.
 
-Table of Contents
-=================
+## Table of contents
 
-   * [Concepts in Statistics: A short summary](#concepts-in-statistics-a-short-summary)
-      * [For whom is this guide?](#for-whom-is-this-guide)
-      * [Usage](#usage)
-      * [Table of Contents](#table-of-contents)
-      * [Jargon](#jargon)
-      * [Statistics and test statistics: What are they and why do we need them?](#statistics-and-test-statistics-what-are-they-and-why-do-we-need-them)
-      * [The likelihood](#the-likelihood)
-      * [Distributions of test statistics](#distributions-of-test-statistics)
-         * [Central limit theorem](#central-limit-theorem)
-            * [Conceptual Description](#conceptual-description)
-            * [Derivation](#derivation)
-         * [Now that we have the central limit theorem, are we done?](#now-that-we-have-the-central-limit-theorem-are-we-done)
-            * [Derivation of Student's <a href="svgs/944d1711a090dfbf9e813cbd3a10ded1.svg?invert_in_darkmode" target="_blank" rel="noopener noreferrer"><img src="svgs/944d1711a090dfbf9e813cbd3a10ded1.svg?invert_in_darkmode" align="middle" width="18.72153029999999pt" height="20.221802699999984pt/" style="max-width:100\x;"></a>distribution](#derivation-of-students-distribution)
-      * [What do we do with the distribution of a test statistic?](#what-do-we-do-with-the-distribution-of-a-test-statistic)
-         * [Flow chart of the process](#flow-chart-of-the-process)
-         * [Why are there so many test statistics? Why are there so many distributions in hypothesis testing?](#why-are-there-so-many-test-statistics-why-are-there-so-many-distributions-in-hypothesis-testing)
-      * [How do we 'accept' or 'reject' a hypothesis?](#how-do-we-accept-or-reject-a-hypothesis)
-         * [How to get the true positive rate from the false negative rate<a name="user-content-false-negative-to-true-positive"></a>](#how-to-get-the-true-positive-rate-from-the-false-negative-rate)
-         * [There exists a trade-off between the false negative and false positive rate](#there-exists-a-trade-off-between-the-false-negative-and-false-positive-rate)
-         * [Why some test statistics are better than others (Neyman-Pearson lemma)](#why-some-test-statistics-are-better-than-others-neyman-pearson-lemma)
+[TOC]
 
-## Jargon
+# Jargon
 
 | Term                                | Meaning                                               | Ref  |
 | ----------------------------------- | ----------------------------------------------------- | ---- |
@@ -56,7 +36,7 @@ Table of Contents
 |                                     |                                                       |      |
 |                                     |                                                       |      |
 
-## Statistics and test statistics: What are they and why do we need them?
+# Statistics and test statistics: What are they and why do we need them?
 
 **Summary: **Test statistics are single numbers that we use to test whether two processes are statistically identical. We discuss the properties that test statistics must have.
 
@@ -82,7 +62,7 @@ Statisticians developed new test statistics to improve performance in these desi
 
 Once we have a test statistics that compares A and B (let's call it <img src="svgs/5b51bd2e6f329245d425b8002d7cf942.svg?invert_in_darkmode" align=middle width=12.397274999999992pt height=22.465723500000017pt/>), then probably a big value <img src="svgs/9302c9c8da4286cadc24d90074a4fc8f.svg?invert_in_darkmode" align=middle width=46.18707884999999pt height=22.465723500000017pt/> indicates that A and B are 'not the same'. How big is big enough? How probable is probably? It would be nice to have an exact criterion for this. That's what we'll do in the next two sections.
 
-## The likelihood
+# The likelihood
 
 **Summary: **The likelihood function of a model is the probability of observing data under that model.
 
@@ -100,17 +80,17 @@ so that immediately gives the likelihood of <img src="svgs/7b0881fb1fe04f6ff118b
 The likelihood of getting multiple datapoints with the same parameters (assuming the datapoints are indepdent) is then
 <p align="center"><img src="svgs/d8bef619ef1e2dd5bf567b67e15d6305.svg?invert_in_darkmode" align=middle width=509.94751664999995pt height=49.315569599999996pt/></p>
 
-## Distributions of test statistics
+# Distributions of test statistics
 
 **Summary: **The values of a test statistic are described by a probability distribution. We show what that distribution is for two simple cases.
 
 A test statistic <img src="svgs/f93ce33e511096ed626b4719d50f17d2.svg?invert_in_darkmode" align=middle width=8.367621899999993pt height=14.15524440000002pt/> is a random number, because it is a function of the data, and is therefore characterized by a probability distribution <img src="svgs/c614f0a80ddb90ba8922662a93f65e1c.svg?invert_in_darkmode" align=middle width=42.16337069999999pt height=24.65753399999998pt/>. I specifically added a conditional on <img src="svgs/27e556cf3caa0673ac49a8f0de3c73ca.svg?invert_in_darkmode" align=middle width=8.17352744999999pt height=22.831056599999986pt/>, because a test statistic is typically comparing some observed data to a *known model* (which has parameter(s) <img src="svgs/27e556cf3caa0673ac49a8f0de3c73ca.svg?invert_in_darkmode" align=middle width=8.17352744999999pt height=22.831056599999986pt/>). Each different test statistic will have its own distribution. This is another reason why there are so many probability distributions in classical statistics: for each different test statistic that we propose, we potentially introduce a new, yet unknown distribution! Finding <img src="svgs/9a5225f3064fc77522e2c33d73c4ba6b.svg?invert_in_darkmode" align=middle width=42.16337069999999pt height=24.65753399999998pt/> can be challenging, but for the simple case of comparing the mean of data to a known model, the *central limit theorem* can be used to compute <img src="svgs/9a5225f3064fc77522e2c33d73c4ba6b.svg?invert_in_darkmode" align=middle width=42.16337069999999pt height=24.65753399999998pt/> analytically.
 
-### Central limit theorem
+# Central limit theorem
 
 **Summary: **We show that <img src="svgs/cc6e98e61e214f13f4b577d6dddb0ef6.svg?invert_in_darkmode" align=middle width=145.2340461pt height=24.995338500000003pt/> is a well-chosen test statistic by deriving the central limit theorem. For this, we use the Fourier transform of the probability distribution of random variables, called the characteristic function.
 
-#### Conceptual Description
+## Conceptual Description
 
 Suppose we have random variables <img src="svgs/1338d1e5163ba5bc872f1411dd30b36a.svg?invert_in_darkmode" align=middle width=18.269651399999987pt height=22.465723500000017pt/>, <img src="svgs/72c406f73b0f4ea0534f41a0196ff981.svg?invert_in_darkmode" align=middle width=77.80903184999998pt height=21.68300969999999pt/>. We'd like to know whether the *average* of <img src="svgs/1338d1e5163ba5bc872f1411dd30b36a.svg?invert_in_darkmode" align=middle width=18.269651399999987pt height=22.465723500000017pt/>, <img src="svgs/49188d6a93d491968eac687abcd5473f.svg?invert_in_darkmode" align=middle width=27.694099949999988pt height=24.65753399999998pt/> (I left out the <img src="svgs/77a3b857d53fb44e33b53e4c8b68351a.svg?invert_in_darkmode" align=middle width=5.663225699999989pt height=21.68300969999999pt/> because we assume all <img src="svgs/1338d1e5163ba5bc872f1411dd30b36a.svg?invert_in_darkmode" align=middle width=18.269651399999987pt height=22.465723500000017pt/> are identically distributed) is equal to some known model. The model both has a specified mean and variance. We now make an *Ansatz* for a test statistic, and we'll see that this form can be used to analytically compute the probability of getting a certain value of that test statistic under the model. The Ansatz is:
 <p align="center"><img src="svgs/00b6ee164fd296142c83e9f2ac07fa98.svg?invert_in_darkmode" align=middle width=123.31526954999998pt height=38.958780299999994pt/></p>
@@ -119,9 +99,6 @@ where <img src="svgs/55a049b8f161ae7cfeb0197d75aff967.svg?invert_in_darkmode" al
 Using the central limit theorem, we can show that the quantity <img src="svgs/f93ce33e511096ed626b4719d50f17d2.svg?invert_in_darkmode" align=middle width=8.367621899999993pt height=14.15524440000002pt/> has a distribution that no longer depends on <img src="svgs/06b5aaaed2a773cd04319ba167748d81.svg?invert_in_darkmode" align=middle width=27.07768304999999pt height=14.15524440000002pt/> or <img src="svgs/8cda31ed38c6d59d14ebefa440099572.svg?invert_in_darkmode" align=middle width=9.98290094999999pt height=14.15524440000002pt/>. Thus, by first rescaling the data in a clever way, we have found a single distribution that captures how different the sampled mean <img src="svgs/c97fba47d1059b5c2d3fa5f52768a2a7.svg?invert_in_darkmode" align=middle width=9.39498779999999pt height=18.666631500000015pt/> is from the model (as described by <img src="svgs/ad5bfc709b2e6c94b4dab37e68111117.svg?invert_in_darkmode" align=middle width=27.19370774999999pt height=14.15524440000002pt/>)! This distribution is <img src="svgs/915e8c48633f3adc2db7753975c9cac3.svg?invert_in_darkmode" align=middle width=126.97750889999998pt height=43.42856099999997pt/> (the approximation improves with larger <img src="svgs/55a049b8f161ae7cfeb0197d75aff967.svg?invert_in_darkmode" align=middle width=9.86687624999999pt height=14.15524440000002pt/>). If <img src="svgs/8fffcccc47f9f88dac738cc6bbf65e09.svg?invert_in_darkmode" align=middle width=29.42361839999999pt height=24.65753399999998pt/> is very small, then our data is very unlikely under the model. That might mean that our data is not described by the model. We'll discuss later how to make that more quantitative.
 
 <details><summary>Derivation of Central Limit Theorem</summary>
-
-#### Derivation
-
 To compute the distribution of <img src="svgs/f93ce33e511096ed626b4719d50f17d2.svg?invert_in_darkmode" align=middle width=8.367621899999993pt height=14.15524440000002pt/>, <img src="svgs/8fffcccc47f9f88dac738cc6bbf65e09.svg?invert_in_darkmode" align=middle width=29.42361839999999pt height=24.65753399999998pt/>, we first split it up into smaller terms: <img src="svgs/9456d07855d6d3510ac4031a49c8af6f.svg?invert_in_darkmode" align=middle width=110.87528429999999pt height=24.995338500000003pt/>, where <img src="svgs/87284acfc7d9cab9246d7c3cb9ee8d8e.svg?invert_in_darkmode" align=middle width=117.00903554999998pt height=24.65753399999998pt/>. We do this because <img src="svgs/c503cd3cc90b9dc8646daa73c42365ae.svg?invert_in_darkmode" align=middle width=14.19429989999999pt height=22.465723500000017pt/> has the nice properties that <img src="svgs/96f3c94049603177c673e7ae1ec30371.svg?invert_in_darkmode" align=middle width=138.31036559999998pt height=24.65753399999998pt/>. We now compute the *characteristic function* of <img src="svgs/8fffcccc47f9f88dac738cc6bbf65e09.svg?invert_in_darkmode" align=middle width=29.42361839999999pt height=24.65753399999998pt/>, which is just the Fourier transform of <img src="svgs/8fffcccc47f9f88dac738cc6bbf65e09.svg?invert_in_darkmode" align=middle width=29.42361839999999pt height=24.65753399999998pt/>:
 <p align="center"><img src="svgs/9423563ceecbb4194675156cac04d411.svg?invert_in_darkmode" align=middle width=222.97205699999998pt height=36.53007435pt/></p>
 This might seem very ad hoc, but we'll see that this makes our derivation easier. This is not complete coincidence, since derivatives of the characteristic function can be related to averages, variances, etc. Since the exponent transforms a sum into a product (<img src="svgs/8482c2e3fe4d93ac5bd4ef07456052d2.svg?invert_in_darkmode" align=middle width=82.4376564pt height=27.91243950000002pt/>), we find that
@@ -144,7 +121,7 @@ So we computed the distribution of the test statistic <img src="svgs/f93ce33e511
 
 </derivation>
 
-### Now that we have the central limit theorem, are we done?
+## Now that we have the central limit theorem, are we done?
 
 **Summary: **We first propose a test statistic <img src="svgs/4f4f4e395762a3af4575de74c019ebb5.svg?invert_in_darkmode" align=middle width=5.936097749999991pt height=20.221802699999984pt/> if the model does not have a known <img src="svgs/7aed918aa12a276a602e30e90b0b109d.svg?invert_in_darkmode" align=middle width=9.98290094999999pt height=14.15524440000002pt/>. We then show that the distribution of this test statistic <img src="svgs/4f4f4e395762a3af4575de74c019ebb5.svg?invert_in_darkmode" align=middle width=5.936097749999991pt height=20.221802699999984pt/> is the Student's <img src="svgs/944d1711a090dfbf9e813cbd3a10ded1.svg?invert_in_darkmode" align=middle width=18.72153029999999pt height=20.221802699999984pt/>distribution.
 
@@ -163,9 +140,6 @@ Here's the distribution that I found numerically for different values of <img sr
 For many samples <img src="svgs/bd0e84fa44072440418590ed368aa5cd.svg?invert_in_darkmode" align=middle width=43.65668669999999pt height=21.18721440000001pt/>, the distribution of <img src="svgs/4f4f4e395762a3af4575de74c019ebb5.svg?invert_in_darkmode" align=middle width=5.936097749999991pt height=20.221802699999984pt/> looks like a Gaussian. This makes sense, because if we sample very often then of course the sampled standard deviation should look very much like the 'real' standard deviation, <img src="svgs/c98e16ece767d2a0d4061ef00a1cbfef.svg?invert_in_darkmode" align=middle width=39.606010949999984pt height=15.883457699999983pt/>, so <img src="svgs/4f4f4e395762a3af4575de74c019ebb5.svg?invert_in_darkmode" align=middle width=5.936097749999991pt height=20.221802699999984pt/> will be the same as <img src="svgs/f93ce33e511096ed626b4719d50f17d2.svg?invert_in_darkmode" align=middle width=8.367621899999993pt height=14.15524440000002pt/> as we found using the central limit theorem. For only a few samples <img src="svgs/2b1dd818c8d59054a639e174faecd8a9.svg?invert_in_darkmode" align=middle width=40.00371704999999pt height=21.18721440000001pt/>, then <img src="svgs/6f9bad7347b91ceebebd3ad7e6f6f2d1.svg?invert_in_darkmode" align=middle width=7.7054801999999905pt height=14.15524440000002pt/> can be very different to <img src="svgs/8cda31ed38c6d59d14ebefa440099572.svg?invert_in_darkmode" align=middle width=9.98290094999999pt height=14.15524440000002pt/>. Moreover, since <img src="svgs/6eb0fbd98e16e35403529c915ec49b0c.svg?invert_in_darkmode" align=middle width=51.99762644999999pt height=24.65753399999998pt/>, if <img src="svgs/6f9bad7347b91ceebebd3ad7e6f6f2d1.svg?invert_in_darkmode" align=middle width=7.7054801999999905pt height=14.15524440000002pt/> happens to be very small just by random chance, then <img src="svgs/4f4f4e395762a3af4575de74c019ebb5.svg?invert_in_darkmode" align=middle width=5.936097749999991pt height=20.221802699999984pt/> can become very big. This is why the distribution of <img src="svgs/4f4f4e395762a3af4575de74c019ebb5.svg?invert_in_darkmode" align=middle width=5.936097749999991pt height=20.221802699999984pt/> has *fat tails* for small values of <img src="svgs/55a049b8f161ae7cfeb0197d75aff967.svg?invert_in_darkmode" align=middle width=9.86687624999999pt height=14.15524440000002pt/>. The family of functions <img src="svgs/9b68b67b54de4ece1432314cff7b9574.svg?invert_in_darkmode" align=middle width=41.46324599999999pt height=24.65753399999998pt/> is called the *Student's <img src="svgs/944d1711a090dfbf9e813cbd3a10ded1.svg?invert_in_darkmode" align=middle width=18.72153029999999pt height=20.221802699999984pt/>distribution*. It is not trivial to derive the formulae for <img src="svgs/2dd05df5f614aac171df87d71ac56bf0.svg?invert_in_darkmode" align=middle width=41.46324599999999pt height=24.65753399999998pt/>, but you can see the sketch of a derivation below.
 
 <details><summary>Sketch of derivation of Student's t-distribution</summary>
-
-#### Derivation of Student's <img src="svgs/944d1711a090dfbf9e813cbd3a10ded1.svg?invert_in_darkmode" align=middle width=18.72153029999999pt height=20.221802699999984pt/>distribution
-
 The student's t-distribution is (for simplicity I first subtracted <img src="svgs/07617f9d8fe48b4a7b3f523d6730eef0.svg?invert_in_darkmode" align=middle width=9.90492359999999pt height=14.15524440000002pt/> from the datapoints)
 <p align="center"><img src="svgs/1ff0fafd24078fcedeca66f0d4ed014d.svg?invert_in_darkmode" align=middle width=118.90901714999998pt height=38.958780299999994pt/></p>
 where <img src="svgs/148cb16a2bdd7e34afdef24f19394b82.svg?invert_in_darkmode" align=middle width=138.51304499999998pt height=26.76175259999998pt/> is the sample variance. To get to <img src="svgs/bb7a14d80e3cf63b2aa80d2c30c1687a.svg?invert_in_darkmode" align=middle width=26.99209754999999pt height=24.65753399999998pt/>, we need to go through the following steps:
@@ -194,7 +168,7 @@ where <img src="svgs/148cb16a2bdd7e34afdef24f19394b82.svg?invert_in_darkmode" al
 
 
 
-## What do we do with the distribution of a test statistic?
+# What do we do with the distribution of a test statistic?
 
 **Summary: **The distribution of a test statistic can be used to compare data against a null hypothesis.
 
@@ -202,7 +176,7 @@ Whatever the form of the test statistic, let's use <img src="svgs/5b51bd2e6f3292
 
 When comparing the data against a null hypothesis, the idea in the scientific method of *falsifying* a hypothesis very naturally arises: we first propose a null hypothesis model <img src="svgs/30074edb23bec8e7c47c584ff885e5b5.svg?invert_in_darkmode" align=middle width=20.21695004999999pt height=22.465723500000017pt/>, and can then see whether the observed data is (im)probable under that model <img src="svgs/213bcf5df33c9c327c40804fe7250419.svg?invert_in_darkmode" align=middle width=59.058355949999985pt height=24.65753399999998pt/>.
 
-### Flow chart of the process
+## Flow chart of the process of setting up a test procedure
 
 1. Assume a null hypothesis <img src="svgs/30074edb23bec8e7c47c584ff885e5b5.svg?invert_in_darkmode" align=middle width=20.21695004999999pt height=22.465723500000017pt/>:
    - $H_0$ refers to some kind of expectation about your data
@@ -212,13 +186,13 @@ When comparing the data against a null hypothesis, the idea in the scientific me
 3. Compute the distribution of <img src="svgs/5b51bd2e6f329245d425b8002d7cf942.svg?invert_in_darkmode" align=middle width=12.397274999999992pt height=22.465723500000017pt/> *under <img src="svgs/30074edb23bec8e7c47c584ff885e5b5.svg?invert_in_darkmode" align=middle width=20.21695004999999pt height=22.465723500000017pt/>*, <img src="svgs/41949d22f67aa322c8b718334d05853a.svg?invert_in_darkmode" align=middle width=59.058355949999985pt height=24.65753399999998pt/>. Important: in computing <img src="svgs/41949d22f67aa322c8b718334d05853a.svg?invert_in_darkmode" align=middle width=59.058355949999985pt height=24.65753399999998pt/>, we assume that the data was generated by the process that is consistent with <img src="svgs/30074edb23bec8e7c47c584ff885e5b5.svg?invert_in_darkmode" align=middle width=20.21695004999999pt height=22.465723500000017pt/>.
 4. Give your test statistic <img src="svgs/5b51bd2e6f329245d425b8002d7cf942.svg?invert_in_darkmode" align=middle width=12.397274999999992pt height=22.465723500000017pt/> and its associated distribution a cool-sounding name, like *The Pirate-Z* and the *Harr-Distribution* <img src="svgs/6d89b651e655c39221cb9d17c46f082f.svg?invert_in_darkmode" align=middle width=58.60742579999999pt height=24.65753399999998pt/>.
 
-### Why are there so many test statistics? Why are there so many distributions in hypothesis testing?
+## Why are there so many test statistics? Why are there so many distributions in hypothesis testing?
 
 As we can see in the above flow-chart, testing different quantities needs different test statistics. Testing for whether the median is different in your data compared to a null model? You need a new test statistic! Testing for whether the variance in your data is different to the null model? You need a new test statistic! Comparing the mean of two samples against *each other*, both with their own sample variances? You need a new test statistic! Additionally, if your null model is not fully parametrized, then you might have to estimate that unknown parameter in your test statistic.
 
 It's easy to see why the number of test statistics will expand to account for all these combinations. For each new test statistic that we propose, we have to compute its distribution under the null model <img src="svgs/41949d22f67aa322c8b718334d05853a.svg?invert_in_darkmode" align=middle width=59.058355949999985pt height=24.65753399999998pt/>. In some cases, <img src="svgs/41949d22f67aa322c8b718334d05853a.svg?invert_in_darkmode" align=middle width=59.058355949999985pt height=24.65753399999998pt/> might be a known distribution from a different problem, but often it is not. This is one reason why the number of distributions is so large: we have to account for all the possible test statistics that we want to use.
 
-## How do we 'accept' or 'reject' a hypothesis?
+# How do we 'accept' or 'reject' a hypothesis?
 
 **Summary: **We discuss false positives, false negatives, and that there exists are trade-off between these two.
 
@@ -226,11 +200,11 @@ When comparing data to a null model <img src="svgs/30074edb23bec8e7c47c584ff885e
 
 Let's denote the false positive and false negative errors by respectively <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg?invert_in_darkmode" align=middle width=10.57650494999999pt height=14.15524440000002pt/> and <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg?invert_in_darkmode" align=middle width=10.16555099999999pt height=22.831056599999986pt/>. The highest value of <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg?invert_in_darkmode" align=middle width=10.57650494999999pt height=14.15524440000002pt/> that we're willing to accept is also called the *significance*, and the lower the significance the fewer false positives we make (lower is better, everything else being equal). For some reason that I do not know, statisticians more often use the number <img src="svgs/13741a4267de21d2928d76992e54f9e9.svg?invert_in_darkmode" align=middle width=38.475952349999986pt height=22.831056599999986pt/> over <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg?invert_in_darkmode" align=middle width=10.16555099999999pt height=22.831056599999986pt/> directly, and they call <img src="svgs/13741a4267de21d2928d76992e54f9e9.svg?invert_in_darkmode" align=middle width=38.475952349999986pt height=22.831056599999986pt/> the *statistical size*. When comparing two hypotheses that are mutually exclusive, but when one of them is for sure true, then <img src="svgs/13741a4267de21d2928d76992e54f9e9.svg?invert_in_darkmode" align=middle width=38.475952349999986pt height=22.831056599999986pt/> is the *true positive* rate. So statistical power is another word for true positive rate in these cases. That <img src="svgs/13741a4267de21d2928d76992e54f9e9.svg?invert_in_darkmode" align=middle width=38.475952349999986pt height=22.831056599999986pt/> is the true positive rate when <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg?invert_in_darkmode" align=middle width=10.16555099999999pt height=22.831056599999986pt/> is the false negative rate might not be intuitive, but this can be easily shown, as we do in the next subsection.
 
-### How to get the true positive rate from the false negative rate<a name="false-negative-to-true-positive"></a>
+## How to get the true positive rate from the false negative rate<a name="false-negative-to-true-positive"></a>
 
 The true positive rate is <img src="svgs/c69b81f9f042dfce610b406a275f1eee.svg?invert_in_darkmode" align=middle width=102.226047pt height=31.141535699999984pt/>, where the symbol <img src="svgs/c122693c30c037fc08dc8c1a87be72a3.svg?invert_in_darkmode" align=middle width=32.825416799999985pt height=31.141535699999984pt/> refers to 'rejecting the null hypothesis'; and the tilde means that the <img src="svgs/30074edb23bec8e7c47c584ff885e5b5.svg?invert_in_darkmode" align=middle width=20.21695004999999pt height=22.465723500000017pt/> is false. The false negative rate is <img src="svgs/58a36bd44509b57b3c79060dbe27f88a.svg?invert_in_darkmode" align=middle width=121.7007429pt height=24.65753399999998pt/>. Since we either accept or reject the hypothesis, we have <img src="svgs/aceb457e5a8231eb4ab426fa7ffa4cfe.svg?invert_in_darkmode" align=middle width=242.07165674999993pt height=31.141535699999984pt/>, so we find that the true positive rate <img src="svgs/490be82c9eb1ec4558957219050862d7.svg?invert_in_darkmode" align=middle width=302.46523890000003pt height=31.141535699999984pt/>.
 
-### There exists a trade-off between the false negative and false positive rate
+## There exists a trade-off between the false negative and false positive rate
 
 Ideally, we'd like to make both <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg?invert_in_darkmode" align=middle width=10.57650494999999pt height=14.15524440000002pt/> and <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg?invert_in_darkmode" align=middle width=10.16555099999999pt height=22.831056599999986pt/> as small as possible. It turns out that this is not always possible: there is a *trade-off* between false positives and false negatives. I do not know how general this statement is, or whether there are cases when there isn't a trade-off, but for any hypothesis test by thresholding the test statistic, this trade-off is inevitable. The relationship between <img src="svgs/a4e80986c12176a9830ef85b8225d816.svg?invert_in_darkmode" align=middle width=28.047932549999988pt height=22.831056599999986pt/> for a given model and its data can be visualized in the *receiver operator characteristic* (ROC), which is just a fancy term for a graph with the statistical error rates. The graph below [from Wikipedia](https://commons.wikimedia.org/wiki/File:ROC_curves.svg) illustrates this trade-off and the corresponding ROC curve.
 
@@ -238,7 +212,7 @@ Ideally, we'd like to make both <img src="svgs/c745b9b57c145ec5577b82542b2df546.
 
 Although there is a trade-off between <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg?invert_in_darkmode" align=middle width=10.57650494999999pt height=14.15524440000002pt/> and <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg?invert_in_darkmode" align=middle width=10.16555099999999pt height=22.831056599999986pt/> *for a given test*, it is perfectly possible for test procedure A to have its error rates always be smaller than of a different test procedure B (i.e. that <img src="svgs/8873aa70a117c2adee51ba016cdac476.svg?invert_in_darkmode" align=middle width=64.14937154999998pt height=17.723762100000005pt/> and <img src="svgs/dbebb6526daa3c7b9c6b2bbb9250cc6d.svg?invert_in_darkmode" align=middle width=61.714006199999986pt height=22.831056599999986pt/>). In fact, it turns out that, for a given maximum value of <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg?invert_in_darkmode" align=middle width=10.57650494999999pt height=14.15524440000002pt/>, there is a test procedure that unambiguously produces the lowest value of <img src="svgs/8217ed3c32a785f0b5aad4055f432ad8.svg?invert_in_darkmode" align=middle width=10.16555099999999pt height=22.831056599999986pt/>. A test that satisfies this condition is called *most powerful*, and for a certain type of hypothesis the likelihood ratio is the test statistic that provides this most powerful test. Thus, **some test statistics are really better than others** That statement is subject of the Neyman-Pearson lemma, which we have reproduced below.
 
-### Why some test statistics are better than others (Neyman-Pearson lemma)
+## Why some test statistics are better than others (Neyman-Pearson lemma)
 
 **Summary: **For a given statistical significance <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg?invert_in_darkmode" align=middle width=10.57650494999999pt height=14.15524440000002pt/>, different test statistics provide different rates of false negatives. A test that has the lowest rate of false negatives is called *most powerful*. It turns out that for some hypotheses, we can prove that the likelihood ratio provides the most powerful test for every <img src="svgs/c745b9b57c145ec5577b82542b2df546.svg?invert_in_darkmode" align=middle width=10.57650494999999pt height=14.15524440000002pt/>.
 

@@ -13,29 +13,10 @@
 - Use, share anyway you like.
 
 ## Table of contents
-   * [Concepts in Statistics: A short summary](#concepts-in-statistics-a-short-summary)
-      * [For whom is this guide?](#for-whom-is-this-guide)
-      * [Usage](#usage)
-      * [Jargon](#jargon)
-      * [Statistics and test statistics: What are they and why do we need them?](#statistics-and-test-statistics-what-are-they-and-why-do-we-need-them)
-      * [The likelihood](#the-likelihood)
-      * [Distributions of test statistics](#distributions-of-test-statistics)
-         * [Central limit theorem](#central-limit-theorem)
-            * [Conceptual Description](#conceptual-description)
-            * [Derivation](#derivation)
-         * [Now that we have the central limit theorem, are we done?](#now-that-we-have-the-central-limit-theorem-are-we-done)
-            * [Derivation of Student's $t-$distribution](#derivation-of-students-t-distribution)
-      * [What do we do with the distribution of a test statistic?](#what-do-we-do-with-the-distribution-of-a-test-statistic)
-         * [Flow chart of the process](#flow-chart-of-the-process)
-         * [Why are there so many test statistics? Why are there so many distributions in hypothesis testing?](#why-are-there-so-many-test-statistics-why-are-there-so-many-distributions-in-hypothesis-testing)
-      * [How do we 'accept' or 'reject' a hypothesis?](#how-do-we-accept-or-reject-a-hypothesis)
-         * [How to get the true positive rate from the false negative rate<a name="user-content-false-negative-to-true-positive"></a>](#how-to-get-the-true-positive-rate-from-the-false-negative-rate)
-         * [There exists a trade-off between the false negative and false positive rate](#there-exists-a-trade-off-between-the-false-negative-and-false-positive-rate)
-         * [Why some test statistics are better than others (Neyman-Pearson lemma)](#why-some-test-statistics-are-better-than-others-neyman-pearson-lemma)
 
+[TOC]
 
-
-## Jargon
+# Jargon
 
 | Term                                | Meaning                                               | Ref  |
 | ----------------------------------- | ----------------------------------------------------- | ---- |
@@ -55,7 +36,7 @@
 |                                     |                                                       |      |
 |                                     |                                                       |      |
 
-## Statistics and test statistics: What are they and why do we need them?
+# Statistics and test statistics: What are they and why do we need them?
 
 **Summary: **Test statistics are single numbers that we use to test whether two processes are statistically identical. We discuss the properties that test statistics must have.
 
@@ -81,7 +62,7 @@ Statisticians developed new test statistics to improve performance in these desi
 
 Once we have a test statistics that compares A and B (let's call it $Z$), then probably a big value $Z \gg 0$ indicates that A and B are 'not the same'. How big is big enough? How probable is probably? It would be nice to have an exact criterion for this. That's what we'll do in the next two sections.
 
-## The likelihood
+# The likelihood
 
 **Summary: **The likelihood function of a model is the probability of observing data under that model.
 
@@ -107,17 +88,17 @@ $$
 \mathcal{L}(\mu,\sigma | {X_1,X_2,\ldots..} ) = \prod_i \mathcal{L}(\mu,\sigma | x_i ) = \dfrac{1}{\sqrt{ 2\pi \sigma^2}} \exp\left( - \sum_i \frac{(x_i-\mu)^2}{2\sigma^2} \right).
 $$
 
-## Distributions of test statistics
+# Distributions of test statistics
 
 **Summary: **The values of a test statistic are described by a probability distribution. We show what that distribution is for two simple cases.
 
 A test statistic $z$ is a random number, because it is a function of the data, and is therefore characterized by a probability distribution $p(z | \theta)$. I specifically added a conditional on $\theta$, because a test statistic is typically comparing some observed data to a *known model* (which has parameter(s) $\theta$). Each different test statistic will have its own distribution. This is another reason why there are so many probability distributions in classical statistics: for each different test statistic that we propose, we potentially introduce a new, yet unknown distribution! Finding $p(z|\theta)$ can be challenging, but for the simple case of comparing the mean of data to a known model, the *central limit theorem* can be used to compute $p(z|\theta)$ analytically.
 
-### Central limit theorem
+# Central limit theorem
 
 **Summary: **We show that $z = (\bar x - \mu) / (\sigma /\sqrt n)$ is a well-chosen test statistic by deriving the central limit theorem. For this, we use the Fourier transform of the probability distribution of random variables, called the characteristic function.
 
-#### Conceptual Description
+## Conceptual Description
 
 Suppose we have random variables $X_i$, $i= 1, 2, \ldots$. We'd like to know whether the *average* of $X_i$, $\langle X \rangle$ (I left out the $i$ because we assume all $X_i$ are identically distributed) is equal to some known model. The model both has a specified mean and variance. We now make an *Ansatz* for a test statistic, and we'll see that this form can be used to analytically compute the probability of getting a certain value of that test statistic under the model. The Ansatz is:
 $$
@@ -128,9 +109,6 @@ where $n$ is the number of random variables, $\mu$ is the model average that we'
 Using the central limit theorem, we can show that the quantity $z$ has a distribution that no longer depends on $n,\mu$ or $\sigma$. Thus, by first rescaling the data in a clever way, we have found a single distribution that captures how different the sampled mean $\bar x$ is from the model (as described by $\mu, \sigma$)! This distribution is $p(z) \approx \dfrac 1 {\sqrt{2\pi}} e^{-\frac 1 2 z^2}$ (the approximation improves with larger $n$). If $p(z)$ is very small, then our data is very unlikely under the model. That might mean that our data is not described by the model. We'll discuss later how to make that more quantitative.
 
 <details><summary>Derivation of Central Limit Theorem</summary>
-
-#### Derivation
-
 To compute the distribution of $z$, $p(z)$, we first split it up into smaller terms: $z_n = \sum_i Y_i / \sqrt n$, where $Y_i = (X_i - \mu)/\sigma$. We do this because $Y_i$ has the nice properties that $\langle Y \rangle = 0, \mathrm{var}[Y] = 1$. We now compute the *characteristic function* of $p(z)$, which is just the Fourier transform of $p(z)$:
 $$
 \phi_z (k) = \int dz \, p(z) e^{ikz} = \langle e^{ikz} \rangle.
@@ -165,7 +143,7 @@ So we computed the distribution of the test statistic $z$, and found that it doe
 
 </derivation>
 
-### Now that we have the central limit theorem, are we done?
+## Now that we have the central limit theorem, are we done?
 
 **Summary: **We first propose a test statistic $t$ if the model does not have a known $\sigma $. We then show that the distribution of this test statistic $t$ is the Student's $t-$distribution.
 
@@ -184,9 +162,6 @@ Here's the distribution that I found numerically for different values of $n$ (bl
 For many samples $n\gg 1$, the distribution of $t$ looks like a Gaussian. This makes sense, because if we sample very often then of course the sampled standard deviation should look very much like the 'real' standard deviation, $s \approx \sigma$, so $t$ will be the same as $z$ as we found using the central limit theorem. For only a few samples $n \approx 1$, then $s$ can be very different to $\sigma$. Moreover, since $t \sim 1/ s$, if $s$ happens to be very small just by random chance, then $t$ can become very big. This is why the distribution of $t$ has *fat tails* for small values of $n$. The family of functions $p(t | \mu )$ is called the *Student's $t-$distribution*. It is not trivial to derive the formulae for $p(t|\mu)$, but you can see the sketch of a derivation below.
 
 <details><summary>Sketch of derivation of Student's t-distribution</summary>
-
-#### Derivation of Student's $t-$distribution
-
 The student's t-distribution is (for simplicity I first subtracted $\mu$ from the datapoints)
 $$
 p(t) = p(\frac{\sum_i x_i }{\sqrt n s}),
@@ -217,7 +192,7 @@ where $s^2 = \sum_i x_i^2 / (n-1)$ is the sample variance. To get to $p(t)$, we 
 
 
 
-## What do we do with the distribution of a test statistic?
+# What do we do with the distribution of a test statistic?
 
 **Summary: **The distribution of a test statistic can be used to compare data against a null hypothesis.
 
@@ -225,7 +200,7 @@ Whatever the form of the test statistic, let's use $Z$ as a catch-all symbol, we
 
 When comparing the data against a null hypothesis, the idea in the scientific method of *falsifying* a hypothesis very naturally arises: we first propose a null hypothesis model $H_0$, and can then see whether the observed data is (im)probable under that model $p(Z | H_0)$.
 
-### Flow chart of the process
+## Flow chart of the process of setting up a test procedure
 
 1. Assume a null hypothesis $H_0$:
    - $H_0$ refers to some kind of expectation about your data
@@ -235,13 +210,13 @@ When comparing the data against a null hypothesis, the idea in the scientific me
 3. Compute the distribution of $Z$ *under $H_0$*, $p(Z|H_0)$. Important: in computing $p(Z|H_0)$, we assume that the data was generated by the process that is consistent with $H_0$.
 4. Give your test statistic $Z$ and its associated distribution a cool-sounding name, like *The Pirate-Z* and the *Harr-Distribution* $\mathrm{Harr}(Z)$.
 
-### Why are there so many test statistics? Why are there so many distributions in hypothesis testing?
+## Why are there so many test statistics? Why are there so many distributions in hypothesis testing?
 
 As we can see in the above flow-chart, testing different quantities needs different test statistics. Testing for whether the median is different in your data compared to a null model? You need a new test statistic! Testing for whether the variance in your data is different to the null model? You need a new test statistic! Comparing the mean of two samples against *each other*, both with their own sample variances? You need a new test statistic! Additionally, if your null model is not fully parametrized, then you might have to estimate that unknown parameter in your test statistic.
 
 It's easy to see why the number of test statistics will expand to account for all these combinations. For each new test statistic that we propose, we have to compute its distribution under the null model $p(Z|H_0)$. In some cases, $p(Z|H_0)$ might be a known distribution from a different problem, but often it is not. This is one reason why the number of distributions is so large: we have to account for all the possible test statistics that we want to use.
 
-## How do we 'accept' or 'reject' a hypothesis?
+# How do we 'accept' or 'reject' a hypothesis?
 
 **Summary: **We discuss false positives, false negatives, and that there exists are trade-off between these two.
 
@@ -249,11 +224,11 @@ When comparing data to a null model $H_0$ (which is true or false), we can rejec
 
 Let's denote the false positive and false negative errors by respectively $\alpha$ and $\beta$. The highest value of $\alpha$ that we're willing to accept is also called the *significance*, and the lower the significance the fewer false positives we make (lower is better, everything else being equal). For some reason that I do not know, statisticians more often use the number $1-\beta$ over $\beta$ directly, and they call $1-\beta$ the *statistical size*. When comparing two hypotheses that are mutually exclusive, but when one of them is for sure true, then $1-\beta$ is the *true positive* rate. So statistical power is another word for true positive rate in these cases. That $1-\beta$ is the true positive rate when $\beta$ is the false negative rate might not be intuitive, but this can be easily shown, as we do in the next subsection.
 
-### How to get the true positive rate from the false negative rate<a name="false-negative-to-true-positive"></a>
+## How to get the true positive rate from the false negative rate<a name="false-negative-to-true-positive"></a>
 
 The true positive rate is $p(\hat R H_0| \sim H_0)$, where the symbol $\hat R H_0$ refers to 'rejecting the null hypothesis'; and the tilde means that the $H_0$ is false. The false negative rate is $\beta = p(H_0 | \sim H_0)$. Since we either accept or reject the hypothesis, we have $1 = p(H_0|\sim H_0)+p(\hat R H_0 | \sim H_0)$, so we find that the true positive rate $p(\hat R H_0 | \sim H_0) = 1- p(H_0|\sim H_0) = 1- \beta$.
 
-### There exists a trade-off between the false negative and false positive rate
+## There exists a trade-off between the false negative and false positive rate
 
 Ideally, we'd like to make both $\alpha$ and $\beta$ as small as possible. It turns out that this is not always possible: there is a *trade-off* between false positives and false negatives. I do not know how general this statement is, or whether there are cases when there isn't a trade-off, but for any hypothesis test by thresholding the test statistic, this trade-off is inevitable. The relationship between $\alpha,\beta$ for a given model and its data can be visualized in the *receiver operator characteristic* (ROC), which is just a fancy term for a graph with the statistical error rates. The graph below [from Wikipedia](https://commons.wikimedia.org/wiki/File:ROC_curves.svg) illustrates this trade-off and the corresponding ROC curve.
 
@@ -261,7 +236,7 @@ Ideally, we'd like to make both $\alpha$ and $\beta$ as small as possible. It tu
 
 Although there is a trade-off between $\alpha$ and $\beta$ *for a given test*, it is perfectly possible for test procedure A to have its error rates always be smaller than of a different test procedure B (i.e. that $\alpha_A < \alpha_B$ and $\beta_A < \beta_B$). In fact, it turns out that, for a given maximum value of $\alpha$, there is a test procedure that unambiguously produces the lowest value of $\beta$. A test that satisfies this condition is called *most powerful*, and for a certain type of hypothesis the likelihood ratio is the test statistic that provides this most powerful test. Thus, **some test statistics are really better than others** That statement is subject of the Neyman-Pearson lemma, which we have reproduced below.
 
-### Why some test statistics are better than others (Neyman-Pearson lemma)
+## Why some test statistics are better than others (Neyman-Pearson lemma)
 
 **Summary: **For a given statistical significance $\alpha$, different test statistics provide different rates of false negatives. A test that has the lowest rate of false negatives is called *most powerful*. It turns out that for some hypotheses, we can prove that the likelihood ratio provides the most powerful test for every $\alpha$.
 
